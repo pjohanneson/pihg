@@ -23,7 +23,7 @@ class PIHG {
 			),
 			array(
 				'name' => 'bjork',
-				'name' => 'Bjork',
+				'Name' => 'Bjork',
 			)
 		);
 
