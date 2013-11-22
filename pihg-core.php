@@ -11,41 +11,59 @@ class PIHG {
 
 	function __construct() {
 		add_action( 'init', array( $this, 'pihg_post_types' ) );
+		add_action( );
 	}
 
 	function pihg_post_types() {
-		$labels = array(
-			'name'				=> 'Seed',
-			'singular_name'		=> 'Seed',
-			'add_new'            => 'Add New',
-			'add_new_item'       => 'Add New Seed',
-			'edit_item'          => 'Edit Seed',
-			'new_item'           => 'New Seed',
-			'all_items'          => 'All Seeds',
-			'view_item'          => 'View Seed',
-			'search_items'       => 'Search Seedss',
-			'not_found'          => 'No seeds found',
-			'not_found_in_trash' => 'No seeds found in Trash',
-			'parent_item_colon'  => '',
-			'menu_name'          => 'Seeds',
-		  );
 
-		$args = array(
-		  'labels'             => $labels,
-		  'public'             => true,
-		  'publicly_queryable' => true,
-		  'show_ui'            => true,
-		  'show_in_menu'       => true,
-		  'query_var'          => true,
-		  'rewrite'            => array( 'slug' => 'seed' ),
-		  'capability_type'    => 'post',
-		  'has_archive'        => true,
-		  'hierarchical'       => false,
-		  'menu_position'      => null,
-		  'supports'           => array( 'title', 'editor', 'author', 'thumbnail' )
+		$types = array(
+			array(
+				'name' => 'seed',
+				'Name' => 'Seed',
+			),
 		);
 
-		register_post_type( 'seed', $args );
+		foreach( $types as $type ) {
+
+			$labels = array(
+				'name'				=> $type['Name'] . 's',
+				'singular_name'		=> $type['Name'],
+				'add_new'            => 'Add New',
+				'add_new_item'       => 'Add New ' . $type['Name'],
+				'edit_item'          => 'Edit ' . $type['Name'],
+				'new_item'           => 'New ' . $type['Name'],
+				'all_items'          => 'All ' . $type['Name'] . 's',
+				'view_item'          => 'View ' . $type['Name'],
+				'search_items'       => 'Search ' . $type['Name'] .'s',
+				'not_found'          => 'No ' . $type['name'] . ' found',
+				'not_found_in_trash' => 'No ' . $type['name'] . 's found in Trash',
+				'parent_item_colon'  => '',
+				'menu_name'          => $type['Name'] . 's',
+			  );
+
+			$args = array(
+			  'labels'             => $labels,
+			  'public'             => true,
+			  'publicly_queryable' => true,
+			  'show_ui'            => true,
+			  'show_in_menu'       => true,
+			  'query_var'          => true,
+			  'rewrite'            => array( 'slug' => $type['name'] ),
+			  'capability_type'    => 'post',
+			  'has_archive'        => true,
+			  'hierarchical'       => false,
+			  'menu_position'      => null,
+			  'supports'           => array( 'title', 'editor', 'author', 'thumbnail' )
+			);
+
+			register_post_type( $type['name'], $args );
+
+			// while we're here, let's set some image sizes
+			add_image_size( $type['name'] . '_thumb', 60, 60, true );
+			add_image_size( $type['name'] . '_page_header', 800, 100, true );
+		}
+
+
 
 	}
 }
