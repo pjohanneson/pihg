@@ -21,6 +21,10 @@ class PIHG {
 				'name' => 'seed',
 				'Name' => 'Seed',
 			),
+			array(
+				'name' => 'bjork',
+				'name' => 'Bjork',
+			)
 		);
 
 		foreach( $types as $type ) {
