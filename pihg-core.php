@@ -16,7 +16,7 @@ class PIHG {
 		add_action( 'template_redirect', array( $this, 'template_selector' ) );
 
 		// some debugging
-		add_action( 'shutdown', array( $this, 'debooger' ) );
+		//add_action( 'shutdown', array( $this, 'debooger' ) );
 
 	}
 
@@ -70,13 +70,14 @@ class PIHG {
 	function template_selector() {
 		global $post;
 		$post_type = get_post_type( $post->ID );
-		if( in_array( $post_type, $this->types ) ) {
-			if( is_singular( $post_type ) ) {
-				include( plugin_dir_path( __FILE__ ) . "templates/single-{$post_type}.php" );
-				exit;
-			}
+		if( ! in_array( $post_type, $this->types ) ) {
+			return;
 		}
-		return;
+		if( is_singular( $post_type ) ) {
+			include( plugin_dir_path( __FILE__ ) . "templates/single-{$post_type}.php" );
+			exit;
+		}
+
 	}
 
 	function debooger() {
