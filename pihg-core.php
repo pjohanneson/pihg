@@ -85,6 +85,7 @@ class PIHG {
 		global $template;
 		echo( "Template: $template<br />\n" );
 
+		
 	}
 }
 new PIHG();
