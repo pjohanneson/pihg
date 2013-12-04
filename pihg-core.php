@@ -15,6 +15,9 @@ class PIHG {
 		add_action( 'init', array( $this, 'pihg_post_types' ) );
 		add_action( 'template_redirect', array( $this, 'template_selector' ) );
 
+		// some debugging
+		add_action( 'shutdown', array( $this, 'debooger' ) );
+
 	}
 
 	function pihg_post_types() {
@@ -67,13 +70,19 @@ class PIHG {
 	function template_selector() {
 		global $post;
 		$post_type = get_post_type( $post->ID );
-		if( in_array($post_type, $this->types) ) {
+		if( in_array( $post_type, $this->types ) ) {
 			if( is_singular( $post_type ) ) {
 				include( plugins_url( "templates/single-{$post_type}.php", __FILE__ ) );
 				exit;
 			}
 		}
 		return;
+	}
+
+	function debooger() {
+		global $template;
+		echo( "Template: $template<br />\n" );
+
 	}
 }
 new PIHG();
