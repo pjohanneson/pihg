@@ -22,8 +22,8 @@ class PIHG {
 				'Name' => 'Seed',
 			),
 			array(
-				'name' => 'bjork',
-				'Name' => 'Bjork',
+				'name' => 'contract',
+				'Name' => 'Contract',
 			)
 		);
 
@@ -64,6 +64,7 @@ class PIHG {
 
 			// while we're here, let's set some image sizes
 			add_image_size( $type['name'] . '_thumb', 60, 60, true );
+			add_image_size( $type['name'] . '_featured_image', 300, 999, false );
 			add_image_size( $type['name'] . '_page_header', 800, 100, false );
 		}
 
