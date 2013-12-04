@@ -72,6 +72,8 @@ class PIHG {
 		$post_type = get_post_type( $post->ID );
 		if( in_array( $post_type, $this->types ) ) {
 			if( is_singular( $post_type ) ) {
+				echo( plugins_url( "templates/single-contract.php" , __FILE__ ) );
+				echo( $post_type );
 				include( plugins_url( "templates/single-{$post_type}.php", __FILE__ ) );
 				exit;
 			}
