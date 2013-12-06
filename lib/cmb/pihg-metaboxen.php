@@ -29,10 +29,11 @@ function pihg_metaboxen( array $meta_boxes ) {
 		'show_names' => true, // Show field names on the left
 		// 'cmb_styles' => true, // Enqueue the CMB stylesheet on the frontend
 		'fields'     => array(
-			'name'	=> __( 'Seed Info', 'pihg' ),
+			'name'	=> 'Seed Info',
 			'id'	=> $prefix . 'seed_info',
 			'type'	=> 'table_seed_info',
-		)
+			'desc'	=> 'Seed Info',
+		),
 	);
 
 	return $meta_boxes;
