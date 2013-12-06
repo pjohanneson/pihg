@@ -31,7 +31,7 @@ function pihg_metaboxen( array $meta_boxes ) {
 		'fields'     => array(
 			'name'	=> 'Seed Info',
 			'id'	=> $prefix . 'seed_info',
-			'type'	=> 'table_seed_info',
+			'type'	=> 'seed_info',
 			'desc'	=> 'Seed Info',
 		),
 	);
@@ -39,7 +39,7 @@ function pihg_metaboxen( array $meta_boxes ) {
 	return $meta_boxes;
 }
 
-add_action( 'cmb_render_table_seed_info', 'pihg_cmb_render_seed_info', 10, 2 );
+add_action( 'cmb_render_seed_info', 'pihg_cmb_render_seed_info', 10, 2 );
 function pihg_cmb_render_seed_info( $field, $meta ) {
 	echo( "<pre>" );
 	var_dump( $field );
@@ -83,12 +83,9 @@ function pihg_cmb_render_seed_info( $field, $meta ) {
 
 }
 
-add_filter( 'cmb_validate_table_seed_info', 'pihg_validate_seed_info' );
+add_filter( 'cmb_validate_seed_info', 'pihg_validate_seed_info' );
 function pihg_validate_seed_info( $new ) {
-	echo( "<pre>" );
-	var_dump( $new );
-	echo( "</pre>" );
-	exit;
+	return $new;
 }
 
 add_action( 'init', 'cmb_initialize_cmb_meta_boxes', 9999 );
