@@ -8,7 +8,7 @@
  * @link     https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress
  */
 
-add_filter( 'cmb_meta_boxes', 'pihg_metaboxen' );
+add_filter( 'cmb_meta_boxes', 'pihg_metaboxen', 20 );
 /**
  * Define the metabox and field configurations.
  *
@@ -31,7 +31,7 @@ function pihg_metaboxen( array $meta_boxes ) {
 		'fields'     => array(
 			'name'	=> 'Seed Info',
 			'id'	=> $prefix . 'seed_info',
-			'type'	=> 'tabl_seed_info',
+			'type'	=> 'table_seed_info',
 			'desc'	=> 'Seed Info',
 		),
 	);
