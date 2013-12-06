@@ -20,7 +20,7 @@ function pihg_metaboxen( array $meta_boxes ) {
 	// Start with an underscore to hide fields from custom fields list
 	$prefix = '_pihg_';
 
-	$meta_boxes['test_metabox'] = array(
+	$meta_boxes['pihg_metabox'] = array(
 		'id'         => $prefix . 'seed_meta',
 		'title'      => __( 'Seed Information', 'pihg' ),
 		'pages'      => array( 'seed', ), // Post type
@@ -34,6 +34,7 @@ function pihg_metaboxen( array $meta_boxes ) {
 			'type'	=> 'table_seed_info',
 		)
 	);
+	_dump( $meta_boxes );
 	return $meta_boxes;
 }
 
