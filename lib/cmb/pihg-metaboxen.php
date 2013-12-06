@@ -34,13 +34,12 @@ function pihg_metaboxen( array $meta_boxes ) {
 			'type'	=> 'table_seed_info',
 		)
 	);
-	
+
 	return $meta_boxes;
 }
 
 add_action( 'cmb_render_table_seed_info', 'pihg_cmb_render_seed_info', 10, 2 );
 function pihg_cmb_render_seed_info( $field, $meta ) {
-//PA (16:0) 	SA (18:0) 	0A (18:1) 	LA (18:2) 	GLA (18:3) 	ALA (18:3) 	SDA (18:4) 	Avg % Oil Content
 
 	echo <<< EOT
 <table>
@@ -61,15 +60,15 @@ function pihg_cmb_render_seed_info( $field, $meta ) {
 
 	<tbody>
 		<tr>
-			<td><input type="text" name="{$field['id']}[year]" default="Year" /></td>
-			<td><input type="text" name="{$field['id']}[PA]" default="PA (16:0)" /></td>
-			<td><input type="text" name="{$field['id']}[SA]" default="SA (18:0)" /></td>
-			<td><input type="text" name="{$field['id']}[0A]" default="0A (18:1)" /></td>
-			<td><input type="text" name="{$field['id']}[LA]" default="LA (18:2)" /></td>
-			<td><input type="text" name="{$field['id']}[GLA]" default="GLA (18:3)" /></td>
-			<td><input type="text" name="{$field['id']}[ALA]" default="ALA (18:3)" /></td>
-			<td><input type="text" name="{$field['id']}[SDA]" default="SDA (18:4)" /></td>
-			<td><input type="text" name="{$field['id']}[Oil]" default="Avg % Oil" /></td>
+			<td><input type="text" name="{$field['id']}[year]" value="{$meta['id']['year']}" default="Year" /></td>
+			<td><input type="text" name="{$field['id']}[PA]" value="{$meta['id']['PA']}" default="PA (16:0)" /></td>
+			<td><input type="text" name="{$field['id']}[SA]" value="{$meta['id']['SA']}" default="SA (18:0)" /></td>
+			<td><input type="text" name="{$field['id']}[0A]" value="{$meta['id']['0A']}" default="0A (18:1)" /></td>
+			<td><input type="text" name="{$field['id']}[LA]" value="{$meta['id']['LA']}" default="LA (18:2)" /></td>
+			<td><input type="text" name="{$field['id']}[GLA]" value="{$meta['id']['GLA']}" default="GLA (18:3)" /></td>
+			<td><input type="text" name="{$field['id']}[ALA]" value="{$meta['id']['ALA']}" default="ALA (18:3)" /></td>
+			<td><input type="text" name="{$field['id']}[SDA]" value="{$meta['id']['SDA']}" default="SDA (18:4)" /></td>
+			<td><input type="text" name="{$field['id']}[Oil]" value="{$meta['id']['Oil']}" default="Avg % Oil" /></td>
 		</tr>
 	</tbody>
 </table>
