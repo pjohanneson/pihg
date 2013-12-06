@@ -89,6 +89,40 @@ function pihg_validate_seed_info( $new ) {
 	exit;
 }
 
+// using some sample code
+add_action( 'cmb_render_text_email', 'rrh_cmb_render_text_email', 10, 2 );
+function rrh_cmb_render_text_email( $field, $meta ) {
+    echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $meta ? $meta : $field['std'], '" style="width:97%" />','<p class="cmb_metabox_description">', $field['desc'], '</p>';
+}
+
+add_filter( 'cmb_validate_text_email', 'rrh_cmb_validate_text_email' );
+function rrh_cmb_validate_text_email( $new ) {
+    if ( !is_email( $new ) ) {$new = "";}
+    return $new;
+}
+
+add_filter( 'cmb_meta_boxes', 'rrh_person_meta_boxes' );
+function rrh_person_meta_boxes( $meta_boxes ) {
+	$meta_boxes[] = array(
+		'id' => 'rrh_person_metabox',
+		'title' => 'Person Information',
+		'pages' => array('rrh_person'),
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => 'Email',
+				'id' => 'rrh_person_email',
+				'type' => 'text_email',
+				'desc' => 'Invalid email addresses will be wiped out.'
+			)
+		)
+	);
+	return $meta_boxes;
+}
+
+// And done
 add_action( 'init', 'cmb_initialize_cmb_meta_boxes', 9999 );
 /**
  * Initialize the metabox class.
