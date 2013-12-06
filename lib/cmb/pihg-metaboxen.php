@@ -106,7 +106,7 @@ function rrh_person_meta_boxes( $meta_boxes ) {
 	$meta_boxes[] = array(
 		'id' => 'rrh_person_metabox',
 		'title' => 'Person Information',
-		'pages' => array('rrh_person'),
+		'pages' => array('seed'),
 		'context' => 'normal',
 		'priority' => 'high',
 		'show_names' => true, // Show field names on the left
