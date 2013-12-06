@@ -7,6 +7,8 @@
  * Description: Provides CPTs and other enhancements for the PIHG site.
  */
 
+include( plugin_dir_path( __FILE__ ) ) . 'lib/cmb/pihg-metaboxen.php';
+
 class PIHG {
 
 	var $types = array( 'seed', 'contract', );
