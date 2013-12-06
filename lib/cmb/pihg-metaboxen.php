@@ -44,13 +44,6 @@ function pihg_metaboxen( array $meta_boxes ) {
 add_action( 'cmb_render_table_seed_info', 'pihg_cmb_render_seed_info', 10, 2 );
 function pihg_cmb_render_seed_info( $field, $meta ) {
 
-	if( ! empty( $meta ) ) {
-		echo( "<pre>" );
-		var_dump( $meta );
-		echo( "</pre>" );
-
-	}
-
 	echo( '
 <table>
 
@@ -70,15 +63,15 @@ function pihg_cmb_render_seed_info( $field, $meta ) {
 
 	<tbody>
 		<tr>
-			<td><input type="text" name="' . $field['id'] . '[year]" value="' . $meta['id']['year'] . '" /></td>
-			<td><input type="text" name="' . $field['id'] . '[PA]" value="' . $meta['id']['PA'] . '" /></td>
-			<td><input type="text" name="' . $field['id'] . '[SA]" value="' . $meta['id']['SA'] . '" /></td>
-			<td><input type="text" name="' . $field['id'] . '[0A]" value="' . $meta['id']['0A'] . '" /></td>
-			<td><input type="text" name="' . $field['id'] . '[LA]" value="' . $meta['id']['LA'] . '" /></td>
-			<td><input type="text" name="' . $field['id'] . '[GLA]" value="' . $meta['id']['GLA'] . '" /></td>
-			<td><input type="text" name="' . $field['id'] . '[ALA]" value="' . $meta['id']['ALA'] . '" /></td>
-			<td><input type="text" name="' . $field['id'] . '[SDA]" value="' . $meta['id']['SDA'] . '" /></td>
-			<td><input type="text" name="' . $field['id'] . '[Oil]" value="' . $meta['id']['Oil'] . '" /></td>
+			<td><input type="text" name="' . $field['id'] . '[year]" value="' . $meta['year'] . '" /></td>
+			<td><input type="text" name="' . $field['id'] . '[PA]" value="' . $meta['PA'] . '" /></td>
+			<td><input type="text" name="' . $field['id'] . '[SA]" value="' . $meta['SA'] . '" /></td>
+			<td><input type="text" name="' . $field['id'] . '[0A]" value="' . $meta['0A'] . '" /></td>
+			<td><input type="text" name="' . $field['id'] . '[LA]" value="' . $meta['LA'] . '" /></td>
+			<td><input type="text" name="' . $field['id'] . '[GLA]" value="' . $meta['GLA'] . '" /></td>
+			<td><input type="text" name="' . $field['id'] . '[ALA]" value="' . $meta['ALA'] . '" /></td>
+			<td><input type="text" name="' . $field['id'] . '[SDA]" value="' . $meta['SDA'] . '" /></td>
+			<td><input type="text" name="' . $field['id'] . '[Oil]" value="' . $meta['Oil'] . '" /></td>
 		</tr>
 	</tbody>
 </table>
