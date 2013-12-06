@@ -34,7 +34,7 @@ function pihg_metaboxen( array $meta_boxes ) {
 			'type'	=> 'table_seed_info',
 		)
 	);
-	_dump( $meta_boxes );
+	
 	return $meta_boxes;
 }
 
