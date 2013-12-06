@@ -20,7 +20,7 @@ function pihg_metaboxen( array $meta_boxes ) {
 	// Start with an underscore to hide fields from custom fields list
 	$prefix = '_pihg_';
 
-	$meta_boxes['pihg_metabox'] = array(
+	$meta_boxes[] = array(
 		'id'         => $prefix . 'seed_meta',
 		'title'      => __( 'Seed Information', 'pihg' ),
 		'pages'      => array( 'seed', ), // Post type
@@ -41,7 +41,6 @@ function pihg_metaboxen( array $meta_boxes ) {
 
 add_action( 'cmb_render_table_seed_info', 'pihg_cmb_render_seed_info', 10, 2 );
 function pihg_cmb_render_seed_info( $field, $meta ) {
-
 
 	echo( "hi there" );
 /*
@@ -81,48 +80,14 @@ function pihg_cmb_render_seed_info( $field, $meta ) {
 
 }
 
-//add_filter( 'cmb_validate_table_seed_info', 'pihg_validate_seed_info' );
-function pihg_validate_seed_info( $new ) {
+add_filter( 'cmb_validate_table_seed_info', 'pihg_validate_table_seed_info' );
+function pihg_validate_table_seed_info( $new ) {
 	echo( "<pre>" );
 	var_dump( $new );
 	echo( "</pre>" );
 	exit;
 }
 
-// using some sample code
-add_action( 'cmb_render_text_email', 'rrh_cmb_render_text_email', 10, 2 );
-function rrh_cmb_render_text_email( $field, $meta ) {
-    echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $meta ? $meta : $field['std'], '" style="width:97%" />','<p class="cmb_metabox_description">', $field['desc'], '</p>';
-}
-
-add_filter( 'cmb_validate_text_email', 'rrh_cmb_validate_text_email' );
-function rrh_cmb_validate_text_email( $new ) {
-    if ( !is_email( $new ) ) {$new = "";}
-    return $new;
-}
-
-add_filter( 'cmb_meta_boxes', 'rrh_person_meta_boxes' );
-function rrh_person_meta_boxes( $meta_boxes ) {
-	$meta_boxes[] = array(
-		'id' => 'rrh_person_metabox',
-		'title' => 'Person Information',
-		'pages' => array('seed'),
-		'context' => 'normal',
-		'priority' => 'high',
-		'show_names' => true, // Show field names on the left
-		'fields' => array(
-			array(
-				'name' => 'Email',
-				'id' => 'rrh_person_email',
-				'type' => 'text_email',
-				'desc' => 'Invalid email addresses will be wiped out.'
-			)
-		)
-	);
-	return $meta_boxes;
-}
-
-// And done
 add_action( 'init', 'cmb_initialize_cmb_meta_boxes', 9999 );
 /**
  * Initialize the metabox class.
