@@ -81,10 +81,12 @@ function pihg_cmb_render_seed_info( $field, $meta ) {
 
 add_filter( 'cmb_validate_table_seed_info', 'pihg_validate_table_seed_info' );
 function pihg_validate_table_seed_info( $new ) {
-	echo( "<pre>" );
-	var_dump( $new );
-	echo( "</pre>" );
-	exit;
+	foreach( $new as $key => $value ) {
+		if( ! is_numeric ( $value ) ) {
+			$new[$key] = floatval( $value );
+		}
+	}
+	return $new;
 }
 
 add_action( 'init', 'cmb_initialize_cmb_meta_boxes', 9999 );
