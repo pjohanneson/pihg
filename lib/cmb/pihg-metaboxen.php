@@ -40,9 +40,12 @@ function pihg_metaboxen( array $meta_boxes ) {
 
 add_action( 'cmb_render_table_seed_info', 'pihg_cmb_render_seed_info', 10, 2 );
 function pihg_cmb_render_seed_info( $field, $meta ) {
+	echo( "<pre>" );
+	var_dump( $field );
+	echo( "</pre>" );
 
 	echo( "hi there" );
-
+/*
 	echo( '
 <table>
 
@@ -75,6 +78,7 @@ function pihg_cmb_render_seed_info( $field, $meta ) {
 	</tbody>
 </table>
 ');
+*/
 
 }
 
