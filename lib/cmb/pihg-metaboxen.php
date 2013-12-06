@@ -73,7 +73,7 @@ function pihg_cmb_render_seed_info( $field, $meta ) {
 	</tbody>
 </table>
 EOT;
-			x;
+
 }
 
 add_filter( 'cmb_validate_table_seed_info', 'pihg_validate_seed_info' );
