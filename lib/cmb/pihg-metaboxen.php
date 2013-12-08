@@ -75,7 +75,7 @@ function pihg_cmb_render_seed_info( $field, $meta ) {
 		</tr>
 	</tbody>
 </table>
-<p><a href="#" class="add_row">New Row</a></p>
+<p><a class="add_row">New Row</a></p>
 ');
 
 }
