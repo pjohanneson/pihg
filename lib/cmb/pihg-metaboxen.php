@@ -8,18 +8,6 @@
  * @link     https://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress
  */
 
-add_action( 'admin_enqueue_scripts', 'pihg_load_scripts' );
-function pihg_load_scripts() {
-	$handle = 'pihg';
-	$src = plugins_url( 'scripts/pihg.jquery.js', __FILE__ );
-	$deps = 'jquery';
-	$ver = false;
-	$in_footer = true;
-	wp_register_script($handle, $src, $deps, $ver, $in_footer );
-	wp_enqueue_script( 'pihg' );
-
-}
-
 add_filter( 'cmb_meta_boxes', 'pihg_metaboxen', 20 );
 /**
  * Define the metabox and field configurations.

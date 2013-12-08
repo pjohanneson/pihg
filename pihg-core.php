@@ -16,6 +16,8 @@ class PIHG {
 	function __construct() {
 		add_action( 'init', array( $this, 'pihg_post_types' ) );
 		add_action( 'template_redirect', array( $this, 'template_selector' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'pihg_load_scripts' ) );
+
 
 		// some debugging
 		//add_action( 'shutdown', array( $this, 'debooger' ) );
@@ -81,6 +83,18 @@ class PIHG {
 		}
 
 	}
+
+	function pihg_load_scripts() {
+		$handle = 'pihg';
+		$src = plugins_url( 'scripts/pihg.jquery.js', __FILE__ );
+		$deps = 'jquery';
+		$ver = false;
+		$in_footer = true;
+		wp_register_script($handle, $src, $deps, $ver, $in_footer );
+		wp_enqueue_script( 'pihg' );
+
+	}
+
 
 	function debooger() {
 		global $template;
