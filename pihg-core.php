@@ -22,7 +22,7 @@ class PIHG {
 
 
 		// some debugging
-		add_action( 'shutdown', array( $this, 'debooger' ) );
+		// add_action( 'shutdown', array( $this, 'debooger' ) );
 
 	}
 
