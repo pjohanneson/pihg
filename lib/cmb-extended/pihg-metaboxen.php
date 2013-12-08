@@ -93,7 +93,7 @@ function pihg_validate_table_seed_info( $new ) {
 	return $new;
 }
 
-add_action( 'init', 'cmb_initialize_cmb_meta_boxes', 9999 );
+// add_action( 'init', 'cmb_initialize_cmb_meta_boxes', 9999 );
 /**
  * Initialize the metabox class.
  */
