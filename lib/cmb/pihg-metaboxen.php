@@ -82,6 +82,9 @@ function pihg_cmb_render_seed_info( $field, $meta ) {
 
 add_filter( 'cmb_validate_table_seed_info', 'pihg_validate_table_seed_info' );
 function pihg_validate_table_seed_info( $new ) {
+
+	_dump( $new ) ;
+	exit;
 	foreach( $new as $key => $value ) {
 		if( ! is_numeric ( $value ) ) {
 			$new[$key] = floatval( $value );
