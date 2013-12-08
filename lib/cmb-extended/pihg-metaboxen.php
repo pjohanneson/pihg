@@ -22,7 +22,7 @@ function pihg_metaboxen( array $meta_boxes ) {
 
 	// set up the fields
 	$seed_info_fields = array(
-		array( 'id' => 'year',  'name' => 'Year', 'type' => 'text_small' ),
+		array( 'id' => 'year',  'name' => 'Year', 'type' => 'text_small', 'cols' => 2, ),
 		array( 'id' => 'pa_16_0', 'name' => 'PA (16:0)', 'type' => 'text_small' ),
 	);
 
