@@ -41,6 +41,7 @@ function pihg_metaboxen( array $meta_boxes ) {
 				//'repeatable' => true,
 				'desc'	=> 'Seed Info',
 				'fields'	=> $seed_info_fields,
+				'cols'	=> 9,
 			),
 		),
 	);
