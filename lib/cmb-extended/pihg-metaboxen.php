@@ -20,20 +20,27 @@ function pihg_metaboxen( array $meta_boxes ) {
 	// Start with an underscore to hide fields from custom fields list
 	$prefix = '_pihg_';
 
+	// set up the fields
+	$seed_info_fields = array(
+		array( 'id' => 'year',  'name' => 'Year', 'type' => 'text_small' ),
+		array( 'id' => 'pa_16_0', 'name' => 'PA (16:0)', 'type' => 'text_small' ),
+	);
+
 	$meta_boxes[] = array(
 		'id'         => $prefix . 'seed_meta',
 		'title'      => __( 'Seed Information', 'pihg' ),
 		'pages'      => array( 'seed', ), // Post type
 		'context'    => 'normal',
 		'priority'   => 'high',
-		'show_names' => false, // Show field names on the left
+		'repeatable' => true,
 		// 'cmb_styles' => true, // Enqueue the CMB stylesheet on the frontend
 		'fields'     => array(
 			array(
 				'name'	=> 'Seed Info',
 				'id'	=> $prefix . 'seed_info',
-				'type'	=> 'table_seed_info',
+				'type'	=> 'group',
 				'desc'	=> 'Seed Info',
+				'fields'	=> $seed_info_fields,
 			),
 		),
 	);
@@ -41,65 +48,3 @@ function pihg_metaboxen( array $meta_boxes ) {
 	return $meta_boxes;
 }
 
-add_action( 'cmb_render_table_seed_info', 'pihg_cmb_render_seed_info', 10, 2 );
-function pihg_cmb_render_seed_info( $field, $meta ) {
-
-	echo( '
-<table id="seed-info">
-
-   <thead>
-		<tr>
-			<th>Year</th>
-			<th>PA (16:0)</th>
-			<th>SA (18:0)</th>
-			<th>0A (18:1)</th>
-			<th>LA (18:2)</th>
-			<th>GLA (18:3)</th>
-			<th>ALA (18:3)</th>
-			<th>SDA (18:4)</th>
-			<th>Avg % Oil</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<tr>
-			<td><input type="text" name="' . $field['id'] . '[year]" value="' . $meta['year'] . '" /></td>
-			<td><input type="text" name="' . $field['id'] . '[PA]" value="' . $meta['PA'] . '" /></td>
-			<td><input type="text" name="' . $field['id'] . '[SA]" value="' . $meta['SA'] . '" /></td>
-			<td><input type="text" name="' . $field['id'] . '[0A]" value="' . $meta['0A'] . '" /></td>
-			<td><input type="text" name="' . $field['id'] . '[LA]" value="' . $meta['LA'] . '" /></td>
-			<td><input type="text" name="' . $field['id'] . '[GLA]" value="' . $meta['GLA'] . '" /></td>
-			<td><input type="text" name="' . $field['id'] . '[ALA]" value="' . $meta['ALA'] . '" /></td>
-			<td><input type="text" name="' . $field['id'] . '[SDA]" value="' . $meta['SDA'] . '" /></td>
-			<td><input type="text" name="' . $field['id'] . '[Oil]" value="' . $meta['Oil'] . '" /></td>
-		</tr>
-	</tbody>
-</table>
-<p><a class="add_row">New Row</a></p>
-');
-
-}
-
-add_filter( 'cmb_validate_table_seed_info', 'pihg_validate_table_seed_info' );
-function pihg_validate_table_seed_info( $new ) {
-
-	echo( "<pre>" ); var_dump( $new ) ; echo( "</pre>" );
-	exit;
-	foreach( $new as $key => $value ) {
-		if( ! is_numeric ( $value ) ) {
-			$new[$key] = floatval( $value );
-		}
-	}
-	return $new;
-}
-
-// add_action( 'init', 'cmb_initialize_cmb_meta_boxes', 9999 );
-/**
- * Initialize the metabox class.
- */
-function cmb_initialize_cmb_meta_boxes() {
-
-	if ( ! class_exists( 'cmb_Meta_Box' ) )
-		require_once 'init.php';
-
-}
