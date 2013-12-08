@@ -1,0 +1,12 @@
+/*
+    Document   : admin-styles
+    Created on : 8-Dec-2013, 3:56:42 PM
+    Author     : pjohanneson
+    Description:
+        Purpose of the stylesheet follows.
+*/
+div.cmb-row > div.CMB_Group_Field > div.field-item {
+    float: left;
+    width: 11%;
+}
+
