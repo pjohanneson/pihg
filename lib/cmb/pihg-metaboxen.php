@@ -34,11 +34,6 @@ function pihg_metaboxen( array $meta_boxes ) {
 				'id'	=> $prefix . 'seed_info',
 				'type'	=> 'table_seed_info',
 				'desc'	=> 'Seed Info',
-			),
-			array(
-				'name'	=> 'Texty',
-				'id'	=> $prefix . 'seed_text',
-				'type'	=> 'text',
 				'repeatable' => true,
 			),
 		),
