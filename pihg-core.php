@@ -19,7 +19,7 @@ class PIHG {
 		add_action( 'init', array( $this, 'pihg_post_types' ) );
 		add_action( 'template_redirect', array( $this, 'template_selector' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'pihg_load_scripts' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'pihg_load_styles' ) );
+		// add_action( 'admin_enqueue_scripts', array( $this, 'pihg_load_styles' ) );
 
 
 		// some debugging
