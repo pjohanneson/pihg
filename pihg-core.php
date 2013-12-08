@@ -101,6 +101,13 @@ class PIHG {
 	function debooger() {
 		global $template;
 		echo( "Template: $template<br />\n" );
+		if( is_singular( 'seed' ) ) {
+			// get the meta
+			global $post;
+			echo( "<pre>" );
+			var_dump( get_post_meta( $post->ID ) );
+			echo( "</pre>" );
+		}
 
 
 	}
