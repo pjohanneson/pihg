@@ -37,10 +37,10 @@ function pihg_metaboxen( array $meta_boxes ) {
 			array(
 				'name'	=> 'Seed Info',
 				'id'	=> $prefix . 'seed_info',
-				'type'	=> 'group',
+				'type'	=> 'text',
 				'repeatable' => true,
 				'desc'	=> 'Seed Info',
-				'fields'	=> $seed_info_fields,
+				// 'fields'	=> $seed_info_fields,
 			),
 		),
 	);
