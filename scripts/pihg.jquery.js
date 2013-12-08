@@ -1,5 +1,5 @@
 (function($) {
-	$("a.add_acronym").click( function() {
+	$("a.add_row").click( function() {
 		$('table#seed-info > tbody:last').append("\
 <tr>\n\
 	<td><input type='text' name='_pihg_seed_info[year]' /></td>\n\
