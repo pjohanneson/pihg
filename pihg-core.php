@@ -105,7 +105,7 @@ class PIHG {
 			// get the meta
 			global $post;
 			echo( "<pre>" );
-			var_dump( get_post_meta( $post->ID ) );
+			var_dump( get_post_meta( $post->ID, '_pihg_seed_info_table' ) );
 			echo( "</pre>" );
 		}
 
