@@ -67,7 +67,7 @@ class PIHG {
 			// while we're here, let's set some image sizes
 			add_image_size( $type . '_thumb', 60, 60, true );
 			add_image_size( $type . '_featured_image', 300, 999, false );
-			add_image_size( $type . '_page_header', 800, 100, false );
+			add_image_size( $type . '_page_header', 800, 999, false );
 		}
 
 	}
