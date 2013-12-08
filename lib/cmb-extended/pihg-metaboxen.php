@@ -32,13 +32,13 @@ function pihg_metaboxen( array $meta_boxes ) {
 		'pages'      => array( 'seed', ), // Post type
 		'context'    => 'normal',
 		'priority'   => 'high',
-		'repeatable' => true,
 		// 'cmb_styles' => true, // Enqueue the CMB stylesheet on the frontend
 		'fields'     => array(
 			array(
 				'name'	=> 'Seed Info',
 				'id'	=> $prefix . 'seed_info',
 				'type'	=> 'group',
+				'repeatable' => true,
 				'desc'	=> 'Seed Info',
 				'fields'	=> $seed_info_fields,
 			),
