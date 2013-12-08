@@ -24,6 +24,7 @@ function pihg_metaboxen( array $meta_boxes ) {
 	$seed_info_fields = array(
 		array( 'id' => 'year',  'name' => 'Year', 'type' => 'text_small' ),
 		array( 'id' => 'pa_16_0', 'name' => 'PA (16:0)', 'type' => 'text_small' ),
+		'cols'	=> 9,
 	);
 
 	$meta_boxes[] = array(
@@ -41,7 +42,7 @@ function pihg_metaboxen( array $meta_boxes ) {
 				//'repeatable' => true,
 				'desc'	=> 'Seed Info',
 				'fields'	=> $seed_info_fields,
-				'cols'	=> 9,
+
 			),
 		),
 	);
