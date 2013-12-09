@@ -13,7 +13,7 @@ require_once( plugin_dir_path( __FILE__ ) . 'lib/cmb-extended/custom-meta-boxes.
 
 class PIHG {
 
-	var $types = array( 'seeds', 'contracts', );
+	var $types = array( 'seed', 'contract', );
 
 	function __construct() {
 		add_action( 'init', array( $this, 'pihg_post_types' ) );
@@ -31,22 +31,20 @@ class PIHG {
 
 		foreach( $this->types as $type ) {
 
-			$singular = rtrim( $type, 's' );
-
 			$labels = array(
-				'name'				=> ucfirst( $type ),
-				'singular_name'		=> ucfirst( $singular ),
+				'name'				=> ucfirst( $type ). 's',
+				'singular_name'		=> ucfirst( $type ),
 				'add_new'            => 'Add New',
-				'add_new_item'       => 'Add New ' . ucfirst( $singular ),
-				'edit_item'          => 'Edit ' . ucfirst( $singular ),
-				'new_item'           => 'New ' . ucfirst( $singular ),
-				'all_items'          => 'All ' . ucfirst( $type ),
-				'view_item'          => 'View ' . ucfirst( $singular ),
-				'search_items'       => 'Search ' . ucfirst( $type ),
+				'add_new_item'       => 'Add New ' . ucfirst( $type ),
+				'edit_item'          => 'Edit ' . ucfirst( $type ),
+				'new_item'           => 'New ' . ucfirst( $type ),
+				'all_items'          => 'All ' . ucfirst( $type ) . 's',
+				'view_item'          => 'View ' . ucfirst( $type ),
+				'search_items'       => 'Search ' . ucfirst( $type ) .'s',
 				'not_found'          => 'No ' . $type . ' found',
-				'not_found_in_trash' => 'No ' . $type . ' found in Trash',
+				'not_found_in_trash' => 'No ' . $type . 's found in Trash',
 				'parent_item_colon'  => '',
-				'menu_name'          => ucfirst( $type ),
+				'menu_name'          => ucfirst( $type ) . 's',
 			  );
 
 			$args = array(
@@ -56,7 +54,7 @@ class PIHG {
 			  'show_ui'            => true,
 			  'show_in_menu'       => true,
 			  'query_var'          => true,
-			  'rewrite'            => array( 'slug' => $singular, ),
+			  'rewrite'            => array( 'slug' => $type ),
 			  'capability_type'    => 'post',
 			  'has_archive'        => true,
 			  'hierarchical'       => false,
