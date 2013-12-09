@@ -84,7 +84,7 @@ class PIHG {
 		}
 
 		if( is_archive( $post_type ) ) {
-			include( plugin_dir_path( __FILE__ ) . "templates/archive-{post_type}.php" );
+			include( plugin_dir_path( __FILE__ ) . "templates/archive-{$post_type}.php" );
 			exit;
 		}
 
