@@ -54,7 +54,7 @@ class PIHG {
 			  'show_ui'            => true,
 			  'show_in_menu'       => true,
 			  'query_var'          => true,
-			  'rewrite'            => array( 'slug' => $type ),
+			  'rewrite'            => array( 'slug' => $type, 'ep_mask' => 'all', ),
 			  'capability_type'    => 'post',
 			  'has_archive'        => true,
 			  'hierarchical'       => false,
