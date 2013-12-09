@@ -83,6 +83,14 @@ class PIHG {
 			exit;
 		}
 
+		if( is_archive( $post_type ) ) {
+
+			echo( "$post_type archive" );
+			// include( plugin_dir_path( __FILE__ ) . "templates/archive-{post_type}.php" );
+
+			exit;
+		}
+
 	}
 
 	function pihg_load_scripts() {
