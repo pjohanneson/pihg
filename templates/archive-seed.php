@@ -11,13 +11,17 @@ get_header(); ?>
 
 			<?php
 			if( have_posts() ) {
+				$i = 0;
 				while( have_posts() ){
+					$classes = 'four columns seed-type';
 					the_post();
+					echo( '<div id="' . $classes . '">' . "\n");
 					if( has_post_thumbnail() ) {
 						the_post_thumbnail();
 					}
-					the_title();
+					the_title( '<h1><a href="' . get_permalink() . '">', "</a></h1>\n" );
 					the_excerpt();
+					echo( "</div>\n" );
 				}
 			}
 			?>
