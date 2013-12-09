@@ -54,7 +54,7 @@ class PIHG {
 			  'show_ui'            => true,
 			  'show_in_menu'       => true,
 			  'query_var'          => true,
-			  'rewrite'            => array( 'slug' => $type, 'ep_mask' => 'all', ),
+			  'rewrite'            => array( 'slug' => $type, ),
 			  'capability_type'    => 'post',
 			  'has_archive'        => true,
 			  'hierarchical'       => false,
@@ -84,10 +84,7 @@ class PIHG {
 		}
 
 		if( is_archive( $post_type ) ) {
-
-			echo( "$post_type archive" );
-			// include( plugin_dir_path( __FILE__ ) . "templates/archive-{post_type}.php" );
-
+			include( plugin_dir_path( __FILE__ ) . "templates/archive-{post_type}.php" );
 			exit;
 		}
 
