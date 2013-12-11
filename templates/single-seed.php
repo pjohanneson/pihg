@@ -27,8 +27,9 @@ while( have_posts() ) {
     echo( "</div>\t<!-- .seed-attributes -->\n" );
 
 	$seed_info = get_post_meta( get_the_ID(), '_pihg_seed_info_table' );
-	echo( "<hr />\n" );
+	$seed_info = usort( $seed_info, '_pihg_seed_table_sorter' );
 	_dump( $seed_info );
+
 	/*
                             	<div class="seed-table">
                                 	<h4>Alyssa 2011</h4>
