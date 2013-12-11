@@ -10,5 +10,6 @@ function _pihg_seed_table_sorter( $a, $b ) {
 	if( $a['_pihg_seedinfo_year'] == $b['_pihg_seedinfo_year'] ) {
 		return 0;
 	}
-	return( $a['_pihg_seedinfo_year'] < $b['_pihg_seedinfo_year'] ) ? -1 : 1;
+	return( $a['_pihg_seedinfo_year'] > $b['_pihg_seedinfo_year'] ) ? -1 : 1;
+	// Sorts HIGH to LOW -- for LOW to HIGH, use '<' instead of '>'
 }
