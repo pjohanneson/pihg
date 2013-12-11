@@ -16,10 +16,10 @@ get_header(); ?>
 					$classes = 'four columns seed-type';
 					the_post();
 					echo( '<div id="' . $classes . '">' . "\n");
+					the_title( '<h1><a href="' . get_permalink() . '">', "</a></h1>\n" );
 					if( has_post_thumbnail() ) {
 						the_post_thumbnail( 'seed_thumb' );
 					}
-					the_title( '<h1><a href="' . get_permalink() . '">', "</a></h1>\n" );
 					the_excerpt();
 					echo( "</div>\n" );
 					$i++;
