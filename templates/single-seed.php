@@ -19,7 +19,7 @@ while( have_posts() ) {
 	the_title( '<h3>', "</h3>\n" );
 
 	echo( '<div class="seed-image">' );
-	the_post_thumbnail( 'seed_post_thumbnail' );
+	the_post_thumbnail( 'seed_featured_image' );
 	echo( "</div>\t<!-- .seed-image -->\n" );
 
     echo( "<div class='seed-attributes'>\n" );
