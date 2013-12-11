@@ -27,42 +27,37 @@ while( have_posts() ) {
     echo( "</div>\t<!-- .seed-attributes -->\n" );
 
 	$seed_info = get_post_meta( get_the_ID(), '_pihg_seed_info_table' );
-	usort( $seed_info, '_pihg_seed_table_sorter' );
-	_dump( $seed_info );
+	if( is_array( $seed_info ) && ! empty( $seed_info ) ) {
+		usort( $seed_info, '_pihg_seed_table_sorter' );
+		echo( "<div class='seed-table'>\n" );
+		echo( "<table class='data-table'>\n" );
+		echo( "<thead>\n" );
+		echo( "<tr>\n" );
+		echo( "<th>Year</th>\n" );
+		echo( "<th>PA (16:0)</th>\n" );
+        echo( "<th>SA (18:0)</th>\n" );
+        echo( "<th>0A (18:1)</th>\n" );
+        echo( "<th>LA (18:2)</th>\n" );
+        echo( "<th>GLA (18:3)</th>\n" );
+        echo( "<th>ALA (18:3)</th>\n" );
+        echo( "<th>SDA (18:4)</th>\n" );
+		echo( "<th>Avg % Oil Content</th>\n" );
+		echo( "</thead>\n" );
 
-	/*
-                            	<div class="seed-table">
-                                	<h4>Alyssa 2011</h4>
-                                    <table class="data-table">
-                                        <tbody><tr>
-                                            <th>PA (16:0)</th>
-                                            <th>SA (18:0)</th>
-                                            <th>0A (18:1)</th>
-                                            <th>LA (18:2)</th>
-                                            <th>GLA (18:3)</th>
-                                            <th>ALA (18:3)</th>
-                                            <th>SDA (18:4)</th>
-                                            <th>Avg % Oil Content</th>
-                                        </tr>
-                                        <tr>
-                                            <td>5.929</td>
-                                            <td>2.944</td>
-                                            <td>15.548</td>
-                                            <td>55.303</td>
-                                            <td>3.025</td>
-                                            <td>16.197</td>
-                                            <td>1.053</td>
-                                            <td>24.8</td>
-                                        </tr>
-                                    </tbody></table>
-                            	</div><!-- end seed-table -->
+		echo( "<tbody>\n" );
+		foreach( $seed_info as $seed_row ) {
+			echo( "<tr>\n" );
+			foreach( $seed_row as $key => $value ) {
+				echo("<td>$value</td>\n" );
+			}
+			echo( "</tr>\n" );
+		}
+		echo( "</tbody>\n" );
+		echo( "</table>\n" );
+	}
 
-                            </div><!-- end seed container -->
-      */
-
-
-
-
+	echo( "</div><!-- end seed-table -->\n" );
+	echo( "</div><!-- end seed container -->\n" );
 
 echo('
 			</div><!-- end .entry -->
