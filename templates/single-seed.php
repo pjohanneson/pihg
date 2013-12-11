@@ -27,6 +27,7 @@ while( have_posts() ) {
     echo( "</div>\t<!-- .seed-attributes -->\n" );
 
 	$seed_info = get_post_meta( null, '_pihg_seed_info_table' );
+	echo( "<hr />\n" );
 	_dump( $seed_info );
 	/*
                             	<div class="seed-table">
