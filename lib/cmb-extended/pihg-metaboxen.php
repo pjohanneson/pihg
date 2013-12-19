@@ -22,15 +22,15 @@ function pihg_metaboxen( array $meta_boxes ) {
 
 	// set up the fields
 	$seed_info_fields = array(
-		array( 'id' => $prefix . 'seedinfo_year',  'name' => 'Year', 'type' => 'text_small', 'cols' => 1, ),
-		array( 'id' => $prefix . 'seedinfo_pa_16_0', 'name' => 'PA (16:0)', 'type' => 'text_small', 'cols' => 1, ),
-		array( 'id' => $prefix . 'seedinfo_sa_18_0', 'name' => 'SA (18:0)', 'type' => 'text_small', 'cols' => 1, ),
-		array( 'id' => $prefix . 'seed_info_0A_18_1', 'name' => '0A (18:1) ', 'type' => 'text_small', 'cols' => 1, ),
-		array( 'id' => $prefix . 'seed_info_LA_18_2', 'name' => 'LA (18:2) ', 'type' => 'text_small', 'cols' => 1, ),
-		array( 'id' => $prefix . 'seed_info_GLA_18_3', 'name' => 'GLA (18:3) ', 'type' => 'text_small', 'cols' => 1, ),
-		array( 'id' => $prefix . 'seed_info_ALA_18_3', 'name' => 'ALA (18:3) ', 'type' => 'text_small', 'cols' => 1, ),
-		array( 'id' => $prefix . 'seed_info_SDA_18_4', 'name' => 'SDA (18:4) ', 'type' => 'text_small', 'cols' => 1, ),
-		array( 'id' => $prefix . 'seed_info_oil', 'name' => 'Avg % Oil Content', 'type' => 'text_small', 'cols' => 1, ),
+		array( 'id' => $prefix . 'seedinfo_year',  'name' => 'Year', 'type' => 'text_small', 'cols' => 2, ),
+		array( 'id' => $prefix . 'seedinfo_pa_16_0', 'name' => 'PA (16:0)', 'type' => 'text_small', 'cols' => 2, ),
+		array( 'id' => $prefix . 'seedinfo_sa_18_0', 'name' => 'SA (18:0)', 'type' => 'text_small', 'cols' => 2, ),
+		array( 'id' => $prefix . 'seed_info_0A_18_1', 'name' => '0A (18:1) ', 'type' => 'text_small', 'cols' => 2, ),
+		array( 'id' => $prefix . 'seed_info_LA_18_2', 'name' => 'LA (18:2) ', 'type' => 'text_small', 'cols' => 2, ),
+		array( 'id' => $prefix . 'seed_info_GLA_18_3', 'name' => 'GLA (18:3) ', 'type' => 'text_small', 'cols' => 2, ),
+		array( 'id' => $prefix . 'seed_info_ALA_18_3', 'name' => 'ALA (18:3) ', 'type' => 'text_small', 'cols' => 2, ),
+		array( 'id' => $prefix . 'seed_info_SDA_18_4', 'name' => 'SDA (18:4) ', 'type' => 'text_small', 'cols' => 2, ),
+		array( 'id' => $prefix . 'seed_info_oil', 'name' => 'Avg % Oil Content', 'type' => 'text_small', 'cols' => 2, ),
 	);
 
 	$meta_boxes[] = array(
