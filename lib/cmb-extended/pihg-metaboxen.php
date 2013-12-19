@@ -46,6 +46,7 @@ function pihg_metaboxen( array $meta_boxes ) {
 				'id'	=> $prefix . 'seed_info_table',
 				'type'	=> 'group',
 				'repeatable' => true,
+				'sortable' => true,
 				'desc'	=> 'Seed Info',
 				'fields'	=> $seed_info_fields,
 

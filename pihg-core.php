@@ -9,6 +9,7 @@
 
 require_once( plugin_dir_path( __FILE__ ) . 'lib/cmb-extended/custom-meta-boxes.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'lib/cmb-extended/pihg-metaboxen.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'lib/cmb-extended/example-functions.php' );
 require_once( plugin_dir_path (__FILE__ ) . 'lib/helpers/helpers.php' );
 
 class PIHG {
