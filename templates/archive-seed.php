@@ -28,7 +28,7 @@ get_header(); ?>
 			?>
 		</div><!-- #content -->
 	</section><!-- #primary -->
-
+ 
 <?php include (TEMPLATEPATH . '/_/inc/nav.php' ); ?>
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>
