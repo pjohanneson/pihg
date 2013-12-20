@@ -106,13 +106,16 @@ class PIHG {
 			update_option( '_pihg_sbp', array( 'title' => $title, 'content' => $content ) );
 		}
 		$boilerplate = get_option( '_pihg_sbp');
-		$this->_dump( $boilerplate );
 		extract( $boilerplate );
 		echo( "<h1>Edit Seed Archive Boilerplate</h1>\n" );
 		echo( "<p>\n" );
 		echo( "<form action='" . menu_page_url( 'pihg-seed-boilerplate', $echo = false ) . "' method='POST'>\n" );
-		echo( "<strong>Title</strong> <input type='text' name='sbp_title' default='Add Title Here' value='{$title}' /><br />\n" );
-		$args = array( 'textarea_name' => 'sbp_content', 'teeny' => true, );
+		echo( "<strong>Title</strong> <input type='text' size='40' name='sbp_title' default='Add Title Here' value='{$title}' /><br />\n" );
+		$args = array(
+			'textarea_name' => 'sbp_content',
+			'teeny' => true,
+			'media_buttons' => false,
+		);
 		wp_editor( $content, 'sbp_content', $args );
 		wp_nonce_field( 'update_sbp', '_sbp_nonce' );
 		echo( "<input type='submit' value='Save' name='submit' />\n" );
