@@ -71,9 +71,9 @@ class PIHG {
 			register_post_type( $_type, $args );
 
 			// while we're here, let's set some image sizes
-			add_image_size( $type . '_thumb', 60, 60, true );
-			add_image_size( $type . '_featured_image', 300, 999, false );
-			add_image_size( $type . '_page_header', 800, 999, false );
+			add_image_size( $_type . '-thumb', 60, 60, true );
+			add_image_size( $_type . '-featured-image', 300, 999, false );
+			add_image_size( $_type . '-page-header', 800, 999, false );
 		}
 
 	}
