@@ -15,7 +15,7 @@ require_once( plugin_dir_path (__FILE__ ) . 'lib/helpers/helpers.php' );
 class PIHG {
 
 	var $types = array( 'pihg-seed', 'pihg-contract', );
-	var $version = '0.5.1';
+	var $version = '0.5';
 
 	function __construct() {
 
@@ -31,6 +31,10 @@ class PIHG {
 
 	}
 
+	/**
+	 * Create the post types
+	 *
+	 */
 	function post_types() {
 
 		foreach( $this->types as $_type ) {
@@ -78,6 +82,9 @@ class PIHG {
 
 	}
 
+	/**
+	 * Load the JS etc that are needed
+	 */
 	function load_scripts() {
 		$handle = 'pihg';
 		$src = plugins_url( 'scripts/pihg.jquery.js', __FILE__ );
@@ -89,6 +96,9 @@ class PIHG {
 
 	}
 
+	/**
+	 * Load the CSS files
+	 */
 	function load_styles() {
 		$handle = 'pihg-admin-styles';
 		$src = plugins_url( 'css/admin-styles.css', __FILE__ );
@@ -99,6 +109,9 @@ class PIHG {
 
 	}
 
+	/**
+	 * When the version # changes, do some things
+	 */
 	function on_update() {
 		$saved_version = get_option( '_pihg_plugin_version' );
 		if( $saved_version != $this->version ) {
@@ -107,7 +120,15 @@ class PIHG {
 		}
 	}
 
+	/**
+	 * Debuggery.
+	 * @global type $template
+	 * @return type
+	 */
 	function debooger() {
+		if( is_admin() ) {
+			return;
+		}
 		global $template;
 		echo( "Template: $template<br />\n" );
 
