@@ -100,7 +100,6 @@ class PIHG {
 
 	function seed_archive_boilerplate_edit() {
 		if( $_POST ) {
-			$this->_dump( $_POST );
 			check_admin_referer( 'update_sbp', '_sbp_nonce' );
 			$title = esc_attr( $_POST['sbp_title'] );
 			$content = esc_attr( $_POST['sbp_content'] );
