@@ -100,9 +100,8 @@ class PIHG {
 
 	function seed_archive_boilerplate_edit() {
 		if( $_POST ) {
-			if( ! wp_verify_nonce( '_sbp_nonce', 'update_sbp' ) ) {
-				wp_die( "Sorry, you can't do that right now." );
-			}
+			$this->_dump( $_POST );
+			check_admin_referer( 'update_sbp', '_sbp_nonce' );
 			$title = esc_attr( $_POST['sbp_title'] );
 			$content = esc_attr( $_POST['sbp_content'] );
 			update_option( '_pihg_sbp', array( 'title' => $title, 'content' => $content ) );
