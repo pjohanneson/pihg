@@ -35,7 +35,7 @@ class PIHG {
 
 		foreach( $this->types as $_type ) {
 
-			$type = str_replace( 'pihg', '', $_type );
+			$type = str_replace( 'pihg-', '', $_type );
 
 			$labels = array(
 				'name'				=> ucfirst( $type ). 's',
