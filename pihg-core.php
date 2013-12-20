@@ -18,9 +18,16 @@ class PIHG {
 	var $version = '0.5';
 
 	function __construct() {
+
+		// frontend / global
 		add_action( 'init', array( $this, 'post_types' ) );
 		add_action( 'init', array( $this, 'on_update' ) );
+
+		// admin side
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_scripts' ) );
+
+		// debugging
+		add_action( 'shutdown', array( $this, 'debooger' ) );
 
 	}
 
@@ -97,6 +104,11 @@ class PIHG {
 			flush_rewrite_rules();
 		}
 	}
-	
+
+	function debooger() {
+		global $template;
+		echo( "Template: $template<br />\n" );
+
+	}
 }
 new PIHG();
