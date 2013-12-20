@@ -25,6 +25,7 @@ class PIHG {
 
 		// admin side
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_scripts' ) );
+		add_action( 'admin_menu', array( $this, 'boilerplate_panels' ) );
 
 		// debugging
 		add_action( 'shutdown', array( $this, 'debooger' ) );
@@ -82,6 +83,46 @@ class PIHG {
 
 	}
 
+
+	function boilerplate_panels() {
+		foreach( $this->types as $_type ) {
+			$type = str_replace( 'pihg-', '', $_type );
+			add_submenu_page(
+					'edit.php?post_type=' . $_type,
+					ucfirst( $type ) . ' Archive Text',
+					ucfirst( $type ) . ' Archive Text',
+					'edit_posts',
+					$type . '-boilerplate',
+					array( $this, $type . '_archive_boilerplate_edit' )
+			);
+		}
+	}
+
+	function seed_archive_boilerplate_edit() {
+		if( $_POST ) {
+			if( ! wp_verify_nonce( '_sbp_nonce', 'update_sbp' ) ) {
+				wp_die( "Sorry, you can't do that right now." );
+			}
+			$title = esc_attr( $_POST['sbp_title'] );
+			$content = esc_attr( $_POST['sbp_content'] );
+			update_option( '_pihg_sbp', array( 'title' => $title, 'content' => $content ) );
+		}
+		$boilerplate = get_option( '_pihg_sbp');
+		$this->_dump( $boilerplate );
+		extract( $boilerplate );
+		echo( "<h1>Edit Seed Archive Boilerplate</h1>\n" );
+		echo( "<p>\n" );
+		echo( "<form action='" . menu_page_url( 'pihg-seed-boilerplate', $echo = false ) . "' method='POST'>\n" );
+		echo( "<input type='text' name='sbp_title' default='Add Title Here' content='{$title}' /><br />\n" );
+		$args = array( 'textarea_name' => 'sbp_content', 'teeny' => true, );
+		wp_editor( $content, 'sbp_content', $args );
+		wp_nonce_field( 'update_sbp', '_sbp_nonce' );
+		echo( "<input type='submit' value='Save' name='submit' />\n" );
+		echo( "</form>\n" );
+		echo( "</p>\n" );
+
+	}
+
 	/**
 	 * Load the JS etc that are needed
 	 */
@@ -131,6 +172,16 @@ class PIHG {
 		}
 		global $template;
 		echo( "Template: $template<br />\n" );
+	}
+
+	function _dump( $x ) {
+		echo( "<pre>\n" );
+		if( is_array( $x ) || is_object( $x ) ) {
+			print_r( $x );
+		} else {
+			echo( $x );
+		}
+		echo( "</pre>\n" );
 	}
 }
 
