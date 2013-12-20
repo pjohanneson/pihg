@@ -15,7 +15,7 @@ require_once( plugin_dir_path (__FILE__ ) . 'lib/helpers/helpers.php' );
 class PIHG {
 
 	var $types = array( 'pihg-seed', 'pihg-contract', );
-	var $version = '0.5';
+	var $version = '0.5.1';
 
 	function __construct() {
 
