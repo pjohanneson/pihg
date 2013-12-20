@@ -111,6 +111,11 @@ class PIHG {
 		global $template;
 		echo( "Template: $template<br />\n" );
 
+		// post types
+		echo( "<pre>" );
+		var_dump( get_post_types() );
+		echo( "</pre>\n" );
+
 	}
 }
 new PIHG();
