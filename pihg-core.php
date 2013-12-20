@@ -68,7 +68,7 @@ class PIHG {
 			  'supports'           => array( 'title', 'editor', 'author', 'thumbnail' )
 			);
 
-			register_post_type( $type, $args );
+			register_post_type( $_type, $args );
 
 			// while we're here, let's set some image sizes
 			add_image_size( $type . '_thumb', 60, 60, true );
