@@ -14,7 +14,7 @@ require_once( plugin_dir_path (__FILE__ ) . 'lib/helpers/helpers.php' );
 
 class PIHG {
 
-	var $types = array( 'seed', 'contract', );
+	var $types = array( 'pihg-seed', 'pihg-contract', );
 	var $version = '0.5';
 
 	function __construct() {
@@ -33,7 +33,9 @@ class PIHG {
 
 	function post_types() {
 
-		foreach( $this->types as $type ) {
+		foreach( $this->types as $_type ) {
+
+			$type = str_replace( 'pihg', '', $_type );
 
 			$labels = array(
 				'name'				=> ucfirst( $type ). 's',
