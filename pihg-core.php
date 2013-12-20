@@ -22,6 +22,7 @@ class PIHG {
 		// frontend / global
 		add_action( 'init', array( $this, 'post_types' ) );
 		add_action( 'init', array( $this, 'on_update' ) );
+		add_filter( 'the_content', array( $this, 'seed_archive_prepend' ) );
 
 		// admin side
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_scripts' ) );
@@ -83,6 +84,16 @@ class PIHG {
 
 	}
 
+	function seed_archive_prepend( $content ) {
+		if( is_post_type_archive( 'pihg-seed' ) ) {
+			$sbp = get_option( '_pihg_sbp' );
+			$content =
+					"<h1>{$sbp['title']}</h1>\n" .
+					"<p>{$sbp['content']}</p>\n" .
+					$content;
+		}
+		return $content;
+	}
 
 	function boilerplate_panels() {
 		foreach( $this->types as $_type ) {
