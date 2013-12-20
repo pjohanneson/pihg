@@ -15,20 +15,16 @@ require_once( plugin_dir_path (__FILE__ ) . 'lib/helpers/helpers.php' );
 class PIHG {
 
 	var $types = array( 'seed', 'contract', );
+	var $version = '0.5';
 
 	function __construct() {
-		add_action( 'init', array( $this, 'pihg_post_types' ) );
-		add_action( 'template_redirect', array( $this, 'template_selector' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'pihg_load_scripts' ) );
-		// add_action( 'admin_enqueue_scripts', array( $this, 'pihg_load_styles' ) );
-
-
-		// some debugging
-		// add_action( 'shutdown', array( $this, 'debooger' ) );
+		add_action( 'init', array( $this, 'post_types' ) );
+		add_action( 'init', array( $this, 'on_update' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'load_scripts' ) );
 
 	}
 
-	function pihg_post_types() {
+	function post_types() {
 
 		foreach( $this->types as $type ) {
 
@@ -73,25 +69,7 @@ class PIHG {
 
 	}
 
-	function template_selector() {
-		global $post;
-		$post_type = get_post_type( $post->ID );
-		if( ! in_array( $post_type, $this->types ) ) {
-			return;
-		}
-		if( is_singular( $post_type ) ) {
-			include( plugin_dir_path( __FILE__ ) . "templates/single-{$post_type}.php" );
-			exit;
-		}
-
-		if( is_archive( $post_type ) ) {
-			include( plugin_dir_path( __FILE__ ) . "templates/archive-{$post_type}.php" );
-			exit;
-		}
-
-	}
-
-	function pihg_load_scripts() {
+	function load_scripts() {
 		$handle = 'pihg';
 		$src = plugins_url( 'scripts/pihg.jquery.js', __FILE__ );
 		$deps = array( 'jquery' );
@@ -102,7 +80,7 @@ class PIHG {
 
 	}
 
-	function pihg_load_styles() {
+	function load_styles() {
 		$handle = 'pihg-admin-styles';
 		$src = plugins_url( 'css/admin-styles.css', __FILE__ );
 		$deps = array( 'cmb-styles' );
@@ -110,6 +88,14 @@ class PIHG {
 		wp_register_style( $handle, $src, $deps, $ver );
 		wp_enqueue_style( $handle );
 
+	}
+
+	function on_update() {
+		$saved_version = get_option( '_pihg_plugin_version' );
+		if( $saved_version != $this->version ) {
+			update_option( '_pihg_plugin_version', $this->version );
+			flush_rewrite_rules();
+		}
 	}
 
 	function debooger() {
