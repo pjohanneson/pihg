@@ -97,19 +97,6 @@ class PIHG {
 			flush_rewrite_rules();
 		}
 	}
-
-	function debooger() {
-		global $template;
-		echo( "Template: $template<br />\n" );
-		if( is_singular( 'seed' ) ) {
-			// get the meta
-			global $post;
-			echo( "<pre>" );
-			var_dump( get_post_meta( $post->ID, '_pihg_seed_info_table' ) );
-			echo( "</pre>" );
-		}
-
-
-	}
+	
 }
 new PIHG();
