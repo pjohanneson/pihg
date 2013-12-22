@@ -22,7 +22,7 @@ class PIHG {
 		// frontend / global
 		add_action( 'init', array( $this, 'post_types' ) );
 		add_action( 'init', array( $this, 'on_update' ) );
-		add_filter( 'the_content', array( $this, 'seed_archive_prepend' ) );
+		// add_filter( 'the_content', array( $this, 'seed_archive_prepend' ) );
 
 		// admin side
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_scripts' ) );
