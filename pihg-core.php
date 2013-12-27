@@ -99,7 +99,7 @@ class PIHG {
 
 	function seed_info( $content ) {
 		if ( is_singular( 'pihg-seed' ) ) {
-			$seed_info = get_post_meta( '_pihg_seed_meta' );
+			$seed_info = get_post_meta( '_pihg_seed_info_table' );
 			$this->_dump( $seed_info );
 			$content .= "Some info!";
 		}
