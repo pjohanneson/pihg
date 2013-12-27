@@ -29,7 +29,8 @@ class PIHG {
 		add_action( 'admin_menu', array( $this, 'boilerplate_panels' ) );
 
 		// debugging
-		add_action( 'shutdown', array( $this, 'debooger' ) );
+		// add_action( 'shutdown', array( $this, 'debooger' ) );
+		add_filter( 'the_content', array( $this, 'handy_info' ) );
 
 	}
 
@@ -186,6 +187,25 @@ class PIHG {
 		echo( "Template: $template<br />\n" );
 	}
 
+	function handy_info( $content ) {
+		if( current_user_can( 'update_core' ) ) {
+			if( is_admin() ) {
+				return;
+			}
+			global $template;
+			$content = "<p>Template: $template</p>\n";
+		}
+		return $content;
+
+	}
+
+
+	/* Handy functions */
+
+	/**
+	 * Display debug info.
+	 * @param mixed $x
+	 */
 	function _dump( $x ) {
 		echo( "<pre>\n" );
 		if( is_array( $x ) || is_object( $x ) ) {
