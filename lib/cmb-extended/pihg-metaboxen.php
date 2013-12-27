@@ -36,7 +36,7 @@ function pihg_metaboxen( array $meta_boxes ) {
 	$meta_boxes[] = array(
 		'id'         => $prefix . 'seed_meta',
 		'title'      => __( 'Seed Information', 'pihg' ),
-		'pages'      => array( 'seed', ), // Post type
+		'pages'      => array( 'pihg-seed', ), // Post type
 		'context'    => 'normal',
 		'priority'   => 'high',
 		// 'cmb_styles' => true, // Enqueue the CMB stylesheet on the frontend
