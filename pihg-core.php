@@ -21,8 +21,9 @@ class PIHG {
 
 		// frontend / global
 		add_action( 'init', array( $this, 'post_types' ) );
-		add_action( 'init', array( $this, 'on_update' ) );
+		add_action( 'init', array( $this, 'on_plugin_update' ) ); // remove once testing is complete!
 		// add_filter( 'the_content', array( $this, 'seed_archive_prepend' ) );
+		add_filter( 'the_content', array( $this, 'seed_info' ) );
 
 		// admin side
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_scripts' ) );
@@ -96,6 +97,15 @@ class PIHG {
 		return $content;
 	}
 
+	function seed_info( $content ) {
+		if ( is_singular( 'pihg-seed' ) ) {
+			$seed_info = get_post_meta( '_pihg_seed_meta' );
+			$this->_dump( $seed_info );
+		}
+
+		return $content;
+	}
+
 	function boilerplate_panels() {
 		foreach( $this->types as $_type ) {
 			$type = str_replace( 'pihg-', '', $_type );
@@ -166,7 +176,7 @@ class PIHG {
 	/**
 	 * When the version # changes, do some things
 	 */
-	function on_update() {
+	function on_plugin_update() {
 		$saved_version = get_option( '_pihg_plugin_version' );
 		if( $saved_version != $this->version ) {
 			update_option( '_pihg_plugin_version', $this->version );
