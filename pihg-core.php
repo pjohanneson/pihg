@@ -30,7 +30,7 @@ class PIHG {
 
 		// debugging
 		// add_action( 'shutdown', array( $this, 'debooger' ) );
-		add_filter( 'the_content', array( $this, 'handy_info' ) );
+		add_filter( 'pihg_top_of_page', array( $this, 'handy_info' ) );
 
 	}
 
