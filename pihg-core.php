@@ -72,7 +72,7 @@ class PIHG {
 			  'has_archive'        => true,
 			  'hierarchical'       => false,
 			  'menu_position'      => null,
-			  'supports'           => array( 'title', 'editor', 'author', 'thumbnail' )
+			  'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt',  )
 			);
 
 			register_post_type( $_type, $args );
