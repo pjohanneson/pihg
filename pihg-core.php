@@ -101,6 +101,7 @@ class PIHG {
 		if ( is_singular( 'pihg-seed' ) ) {
 			$seed_info = get_post_meta( '_pihg_seed_meta' );
 			$this->_dump( $seed_info );
+			$content .= "Some info!";
 		}
 
 		return $content;
