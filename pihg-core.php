@@ -103,6 +103,7 @@ class PIHG {
 	 * @return string
 	 */
 	function seed_info( $content ) {
+		$table = '';
 		if ( is_singular( 'pihg-seed' ) ) {
 			$seed_info = get_post_meta( get_the_ID(), '_pihg_seed_info_table' );
 			if( $seed_info ) {
