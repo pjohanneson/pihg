@@ -124,7 +124,8 @@ class PIHG {
 				foreach( $seed_info as $row ) {
 					$table .= "<tr>\n";
 					foreach( $row as $key => $value ) {
-						$table .= "<td>$value</td>\n";
+						$class = 'class="' . str_replace( array( '_pihg_', '_' ), array( '', '-' ), $key ) . '"';
+						$table .= "<td $class>$value</td>\n";
 					}
 					$table .= "</tr>\n";
 				}
