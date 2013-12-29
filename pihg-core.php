@@ -244,10 +244,10 @@ class PIHG {
 	}
 
 	function seed_info_sorter( $a, $b ) {
-		if( $a['_pihg_seed_info_year'] == $b['_pihg_seed_info_year'] ) {
+		if( $a['_pihg_seedinfo_year'] == $b['_pihg_seedinfo_year'] ) {
 			return 0;
 		}
-		return( $a['_pihg_seed_info_year'] > $b['_pihg_seed_info_year'] ) ? -1 : 1;
+		return( $a['_pihg_seedinfo_year'] > $b['_pihg_seedinfo_year'] ) ? -1 : 1;
 	}
 
 
