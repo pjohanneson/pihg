@@ -101,6 +101,7 @@ class PIHG {
 		if ( is_singular( 'pihg-seed' ) ) {
 			$seed_info = get_post_meta( get_the_ID(), '_pihg_seed_info_table' );
 			if( $seed_info ) {
+				usort( $seed_info, array( $this, 'seed_info_sorter' ) );
 				// table header
 				$table = '
 					<table id="seed-info" class="seed-info">
@@ -119,7 +120,7 @@ class PIHG {
 					</thead>
 
 					<tbody>
-					'; 
+					';
 				foreach( $seed_info as $row ) {
 					$table .= "<tr>\n";
 					foreach( $row as $key => $value ) {
@@ -240,6 +241,13 @@ class PIHG {
 		}
 		return $content;
 
+	}
+
+	function seed_info_sorter( $a, $b ) {
+		if( $a['_pihg_seed_info_year'] == $b['_pihg_seed_info_year'] ) {
+			return 0;
+		}
+		return( $a['_pihg_seed_info_year'] > $b['_pihg_seed_info_year'] ) ? -1 : 1;
 	}
 
 
