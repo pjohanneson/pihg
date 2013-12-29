@@ -23,7 +23,7 @@ class PIHG {
 		add_action( 'init', array( $this, 'post_types' ) );
 		add_action( 'init', array( $this, 'on_plugin_update' ) ); // remove once testing is complete!
 		// add_filter( 'the_content', array( $this, 'seed_archive_prepend' ) );
-		add_filter( 'the_content', array( $this, 'seed_info' ) );
+		add_action( 'pihg_seed_info', array( $this, 'seed_info' ) );
 
 		// admin side
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_scripts' ) );
@@ -97,6 +97,11 @@ class PIHG {
 		return $content;
 	}
 
+	/**
+	 * Add the Seed Info table to the end of the seed CPT single-post content
+	 * @param string $content
+	 * @return string
+	 */
 	function seed_info( $content ) {
 		if ( is_singular( 'pihg-seed' ) ) {
 			$seed_info = get_post_meta( get_the_ID(), '_pihg_seed_info_table' );
@@ -135,10 +140,9 @@ class PIHG {
 					</table> <!-- #seed-info .seed-info -->
 					';
 			}
-			$content .= $table;
 		}
 
-		return $content;
+		echo( $table );
 	}
 
 	function boilerplate_panels() {
