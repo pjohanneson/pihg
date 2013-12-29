@@ -100,8 +100,40 @@ class PIHG {
 	function seed_info( $content ) {
 		if ( is_singular( 'pihg-seed' ) ) {
 			$seed_info = get_post_meta( get_the_ID(), '_pihg_seed_info_table' );
-			$this->_dump( $seed_info );
-			$content .= "Some info!";
+			if( $seed_info ) {
+				// table header
+				$table = '
+					<table id="seed-info" class="seed-info">
+					<thead>
+					<tr>
+					<th>Year</th>
+					<th>PA (16:0)</th>
+					<th>SA (18:0)</th>
+					<th>0A (18:1)</th>
+					<th>LA (18:2)</th>
+					<th>GLA (18:3)</th>
+					<th>ALA (18:3)</th>
+					<th>SDA (18:4)</th>
+					<th>Avg % Oil Content</th>
+					</tr>
+					</thead>
+
+					<tbody>
+					';
+				foreach( $seed_info as $row ) {
+					$table .= "<tr>\n";
+					foreach( $row as $key => $value ) {
+						$table .= "<td>$value</td>\n";
+					}
+					$table .= "</tr>\n";
+				}
+				// end o' table
+				$table .= '
+					</tbody>
+					</table> <!-- #seed-info .seed-info -->
+					';
+			}
+			$content .= $table;
 		}
 
 		return $content;
