@@ -119,7 +119,7 @@ class PIHG {
 					</thead>
 
 					<tbody>
-					';
+					'; 
 				foreach( $seed_info as $row ) {
 					$table .= "<tr>\n";
 					foreach( $row as $key => $value ) {
