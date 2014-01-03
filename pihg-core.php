@@ -214,7 +214,7 @@ class PIHG {
 			$page_list = '<select name="parent_id">' . PHP_EOL;
 			foreach( $pages as $page ) {
 				$page_list .= "<option value='{$page->ID}'";
-				if( $parent_id && $page->ID == $parent_id ) {
+				if( isset( $parent_id ) && $page->ID == $parent_id ) {
 					$page_list .= " selected='selected'";
 				}
 				$page_list .= ">{$page->post_title}</option>" . PHP_EOL;
