@@ -25,6 +25,8 @@ class PIHG {
 		// add_filter( 'the_content', array( $this, 'seed_archive_prepend' ) );
 		add_action( 'pihg_seed_info', array( $this, 'seed_info' ) );
 
+		add_shortcode( 'all-pihg-seeds', array( $this, 'all_seeds' ) );
+
 		// admin side
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_scripts' ) );
 		add_action( 'admin_menu', array( $this, 'boilerplate_panels' ) );
@@ -145,6 +147,48 @@ class PIHG {
 
 		echo( $table );
 	}
+	/**
+	 * Shortcode for the seed list page.
+	 * @return string
+	 */
+	function all_seeds() {
+		$all_seeds = '';
+		$args = array(
+			'post_type' => 'pihg-seed',
+			'posts_per_page' => -1,
+		);
+		$seeds = new WP_Query( $args );
+		if ( $seeds->have_posts() ) {
+		$i = 0;
+		while ( $seeds->have_posts() ) {
+			$seeds->the_post();
+			$greek = '';
+			if ( $i % 3 == 0 ) {
+				$greek = ' alpha';
+			}
+			if( $i % 3 == 2 ) {
+				$greek = ' omega';
+			}
+			$all_seeds .= "<div class='four columns $greek seed-type'>\n";
+			$all_seeds .= "<div class='entry'>\n";
+			$all_seeds .= "<h2 id='post-" .	get_the_ID() .
+					"'><a href='" . get_permalink() . "'>" . get_the_title() . "</a></h2>\n";
+
+			if( has_post_thumbnail() ) {
+				$all_seeds .= get_the_post_thumbnail( 'pihg-seed-thumb' );
+			}
+			$all_seeds .= get_the_excerpt();
+			$all_seeds .= "</div><!-- end .entry -->\n";
+			$all_seeds .= '</div> <!-- .four columns seed-type -->' . PHP_EOL;
+			$i++;
+		}	// while have_posts()
+		wp_reset_postdata();
+	} // if have_posts()
+
+	return $all_seeds;
+}
+
+
 
 	function boilerplate_panels() {
 		foreach( $this->types as $_type ) {
