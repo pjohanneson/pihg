@@ -22,14 +22,13 @@ class PIHG {
 		// frontend / global
 		add_action( 'init', array( $this, 'post_types' ) );
 		add_action( 'init', array( $this, 'on_plugin_update' ) ); // remove once testing is complete!
-		// add_filter( 'the_content', array( $this, 'seed_archive_prepend' ) );
 		add_action( 'pihg_seed_info', array( $this, 'seed_info' ) );
 
 		add_shortcode( 'all-pihg-seeds', array( $this, 'all_seeds' ) );
 
 		// admin side
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_scripts' ) );
-		add_action( 'admin_menu', array( $this, 'boilerplate_panels' ) );
+		add_action( 'admin_menu', array( $this, 'settings_panels' ) );
 
 		// debugging
 		// add_action( 'shutdown', array( $this, 'debooger' ) );
@@ -88,17 +87,6 @@ class PIHG {
 
 	}
 
-	function seed_archive_prepend( $content ) {
-		if( is_post_type_archive( 'pihg-seed' ) ) {
-			$sbp = get_option( '_pihg_sbp' );
-			$content =
-					"<h1>{$sbp['title']}</h1>\n" .
-					"<p>{$sbp['content']}</p>\n" .
-					$content;
-		}
-		return $content;
-	}
-
 	/**
 	 * Add the Seed Info table to the end of the seed CPT single-post content
 	 * @param string $content
@@ -147,6 +135,7 @@ class PIHG {
 
 		echo( $table );
 	}
+
 	/**
 	 * Shortcode for the seed list page.
 	 * @return string
@@ -186,44 +175,51 @@ class PIHG {
 	} // if have_posts()
 
 	return $all_seeds;
-}
+	}
 
-
-
-	function boilerplate_panels() {
+	function settings_panels() {
 		foreach( $this->types as $_type ) {
 			$type = str_replace( 'pihg-', '', $_type );
 			add_submenu_page(
 					'edit.php?post_type=' . $_type,
-					ucfirst( $type ) . ' Archive Text',
-					ucfirst( $type ) . ' Archive Text',
+					ucfirst( $type ) . ' Settings',
+					ucfirst( $type ) . ' Settings',
 					'edit_posts',
-					$type . '-boilerplate',
-					array( $this, $type . '_archive_boilerplate_edit' )
+					$type . '-settings',
+					array( $this, $type . '_archive_settings' )
 			);
 		}
 	}
 
-	function seed_archive_boilerplate_edit() {
+	function seed_archive_settings() {
 		if( $_POST ) {
-			check_admin_referer( 'update_sbp', '_sbp_nonce' );
-			$title = esc_attr( $_POST['sbp_title'] );
-			$content = esc_attr( $_POST['sbp_content'] );
-			update_option( '_pihg_sbp', array( 'title' => $title, 'content' => $content ) );
+			check_admin_referer( 'update_sas', '_sas_nonce' );
+			$parent_id = esc_attr( $_POST['sas_parent_id'] );
+			update_option( '_pihg_sas', array( 'parent_id' => $parent_id, ) );
 		}
-		$boilerplate = get_option( '_pihg_sbp');
-		extract( $boilerplate );
-		echo( "<h1>Edit Seed Archive Boilerplate</h1>\n" );
-		echo( "<p>\n" );
-		echo( "<form action='" . menu_page_url( 'pihg-seed-boilerplate', $echo = false ) . "' method='POST'>\n" );
-		echo( "<strong>Title</strong> <input type='text' size='40' name='sbp_title' default='Add Title Here' value='{$title}' /><br />\n" );
+		$settings = get_option( '_pihg_sas');
+		extract( $settings );
+		echo( "<h1>Seed Settings</h1>\n" );
+		// get the pages
 		$args = array(
-			'textarea_name' => 'sbp_content',
+			'post_type' => 'page',
+			'posts_per_page' => -1,
+			'order_by' => 'post_title',
+			'order' => 'ASC',
+		);
+		$pages = get_posts( $args );
+		$this->_dump( $pages );
+
+		echo( "<p>\n" );
+		echo( "<form action='" . menu_page_url( 'pihg-seed-settings', $echo = false ) . "' method='POST'>\n" );
+		echo( "<strong>Title</strong> <input type='text' size='40' name='sas_title' default='Add Title Here' value='{$title}' /><br />\n" );
+		$args = array(
+			'textarea_name' => 'sas_content',
 			'teeny' => true,
 			'media_buttons' => false,
 		);
-		wp_editor( $content, 'sbp_content', $args );
-		wp_nonce_field( 'update_sbp', '_sbp_nonce' );
+		wp_editor( $content, 'sas_content', $args );
+		wp_nonce_field( 'update_sas', '_sas_nonce' );
 		echo( "<input type='submit' value='Save' name='submit' />\n" );
 		echo( "</form>\n" );
 		echo( "</p>\n" );
