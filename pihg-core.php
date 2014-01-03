@@ -208,17 +208,20 @@ class PIHG {
 			'order' => 'ASC',
 		);
 		$pages = get_posts( $args );
-		$this->_dump( $pages );
+		if( $pages ) {
+			$page_list = '<select name="parent_id">' . PHP_EOL;
+			foreach( $pages as $page ) {
+				$page_list .= "<option value='{$page->ID}'>{$page->post_title}</option>" . PHP_EOL;
+			}
+			$page_list .= '</select>' . PHP_EOL;
+		}
 
 		echo( "<p>\n" );
 		echo( "<form action='" . menu_page_url( 'pihg-seed-settings', $echo = false ) . "' method='POST'>\n" );
-		echo( "<strong>Title</strong> <input type='text' size='40' name='sas_title' default='Add Title Here' value='{$title}' /><br />\n" );
-		$args = array(
-			'textarea_name' => 'sas_content',
-			'teeny' => true,
-			'media_buttons' => false,
-		);
-		wp_editor( $content, 'sas_content', $args );
+		echo( "<strong>Select Seed Archive Page</strong>" . PHP_EOL );
+		if( $page_list ) {
+			echo( $page_list );
+		}
 		wp_nonce_field( 'update_sas', '_sas_nonce' );
 		echo( "<input type='submit' value='Save' name='submit' />\n" );
 		echo( "</form>\n" );
