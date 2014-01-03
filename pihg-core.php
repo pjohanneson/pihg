@@ -198,8 +198,9 @@ class PIHG {
 			update_option( '_pihg_sas', array( 'parent_id' => $parent_id, ) );
 		}
 		$settings = get_option( '_pihg_sas' );
-		$this->_dump( $settings );
-		extract( $settings );
+		if( $settings ) {
+			extract( $settings );
+		}
 		echo( "<h1>Seed Settings</h1>\n" );
 		// get the pages
 		$args = array(
@@ -212,7 +213,11 @@ class PIHG {
 		if( $pages ) {
 			$page_list = '<select name="parent_id">' . PHP_EOL;
 			foreach( $pages as $page ) {
-				$page_list .= "<option value='{$page->ID}'>{$page->post_title}</option>" . PHP_EOL;
+				$page_list .= "<option value='{$page->ID}'";
+				if( $page->ID == $parent_id ) {
+					$page_list .= " selected='selected'";
+				}
+				$page_list .= ">{$page->post_title}</option>" . PHP_EOL;
 			}
 			$page_list .= '</select>' . PHP_EOL;
 		}
