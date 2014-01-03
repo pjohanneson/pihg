@@ -175,7 +175,7 @@ class PIHG {
 					"'><a href='" . get_permalink() . "'>" . get_the_title() . "</a></h2>\n";
 
 			if( has_post_thumbnail() ) {
-				$all_seeds .= get_the_post_thumbnail( 'pihg-seed-thumb' );
+				$all_seeds .= get_the_post_thumbnail( get_the_ID(), 'pihg-seed-thumb' );
 			}
 			$all_seeds .= get_the_excerpt();
 			$all_seeds .= "</div><!-- end .entry -->\n";
