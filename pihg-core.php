@@ -206,7 +206,7 @@ class PIHG {
 		$args = array(
 			'post_type' => 'page',
 			'posts_per_page' => -1,
-			'order_by' => 'post_title',
+			'orderby' => 'post_title',
 			'order' => 'ASC',
 		);
 		$pages = get_posts( $args );
