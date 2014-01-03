@@ -211,7 +211,7 @@ class PIHG {
 		);
 		$pages = get_posts( $args );
 		if( $pages ) {
-			$page_list = '<select name="parent_id">' . PHP_EOL;
+			$page_list = '<select name="sas_parent_id">' . PHP_EOL;
 			foreach( $pages as $page ) {
 				$page_list .= "<option value='{$page->ID}'";
 				if( isset( $parent_id ) && $page->ID == $parent_id ) {
