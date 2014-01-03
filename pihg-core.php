@@ -197,7 +197,8 @@ class PIHG {
 			$parent_id = esc_attr( $_POST['sas_parent_id'] );
 			update_option( '_pihg_sas', array( 'parent_id' => $parent_id, ) );
 		}
-		$settings = get_option( '_pihg_sas');
+		$settings = get_option( '_pihg_sas' );
+		$this->_dump( $settings );
 		extract( $settings );
 		echo( "<h1>Seed Settings</h1>\n" );
 		// get the pages
