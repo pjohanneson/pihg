@@ -153,12 +153,12 @@ class PIHG {
 			$seeds->the_post();
 			$greek = '';
 			if ( $i % 3 == 0 ) {
+				$all_seeds .= "</div>\t<!-- .row -->\n";
+				$all_seeds .= "<div class='row'>\n";
 				$greek = ' alpha';
 			}
 			if( $i % 3 == 2 ) {
 				$greek = ' omega';
-				$all_seeds .= "</div>\t<!-- .row -->\n";
-				$all_seeds .= "<div class='row'>\n";
 			}
 			$all_seeds .= "<div class='four columns $greek seed-type'>\n";
 			$all_seeds .= "<div class='entry'>\n";
