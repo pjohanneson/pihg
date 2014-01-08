@@ -141,7 +141,7 @@ class PIHG {
 	 * @return string
 	 */
 	function all_seeds() {
-		$all_seeds = '';
+		$all_seeds = "<div class='row'>\n";
 		$args = array(
 			'post_type' => 'pihg-seed',
 			'posts_per_page' => -1,
@@ -153,6 +153,8 @@ class PIHG {
 			$seeds->the_post();
 			$greek = '';
 			if ( $i % 3 == 0 ) {
+				$all_seeds .= "</div>\t<!-- .row -->\n";
+				$all_seeds .= "<div class='row'>\n";
 				$greek = ' alpha';
 			}
 			if( $i % 3 == 2 ) {
@@ -171,6 +173,7 @@ class PIHG {
 			$all_seeds .= '</div> <!-- .four columns seed-type -->' . PHP_EOL;
 			$i++;
 		}	// while have_posts()
+		$all_seeds .= "</div>\t<!-- .row -->\n";
 		wp_reset_postdata();
 	} // if have_posts()
 
