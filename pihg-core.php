@@ -152,9 +152,11 @@ class PIHG {
 		while ( $seeds->have_posts() ) {
 			$seeds->the_post();
 			$greek = '';
-			if ( $i % 3 == 0 && $i > 0 ) {
-				$all_seeds .= "</div>\t<!-- .row -->\n";
-				$all_seeds .= "<div class='row'>\n";
+			if ( $i % 3 == 0 ) {
+				if( $i > 0 ) {
+					$all_seeds .= "</div>\t<!-- .row -->\n";
+					$all_seeds .= "<div class='row'>\n";
+				}
 				$greek = ' alpha';
 			}
 			if( $i % 3 == 2 ) {
