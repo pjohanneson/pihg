@@ -10,7 +10,8 @@
 require_once( plugin_dir_path( __FILE__ ) . 'lib/cmb-extended/custom-meta-boxes.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'lib/cmb-extended/pihg-metaboxen.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'lib/cmb-extended/example-functions.php' );
-require_once( plugin_dir_path (__FILE__ ) . 'lib/helpers/helpers.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'lib/helpers/helpers.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'widgets/class-pihg-widgets.php' );
 
 class PIHG {
 
@@ -23,6 +24,9 @@ class PIHG {
 		add_action( 'init', array( $this, 'post_types' ) );
 		add_action( 'init', array( $this, 'on_plugin_update' ) ); // remove once testing is complete!
 		add_action( 'pihg_seed_info', array( $this, 'seed_info' ) );
+
+		// load the widgets
+		add_action( 'widgets_init', function(){ register_widget( 'PIHG_News_Widget' ); });
 
 		add_shortcode( 'all-pihg-seeds', array( $this, 'all_seeds' ) );
 
