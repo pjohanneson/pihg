@@ -199,6 +199,7 @@ class PIHG {
 			'posts_per_page' => -1,
 		);
 		$contracts = new WP_Query( $args );
+		_dump( $contracts );
 		if ( $contracts->have_posts() ) {
 			while ( $contracts->have_posts() ) {
 				$contracts->the_post();
