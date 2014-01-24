@@ -173,7 +173,9 @@ class PIHG {
 					"'><a href='" . get_permalink() . "'>" . get_the_title() . "</a></h2>\n";
 
 			if( has_post_thumbnail() ) {
-				$all_seeds .= get_the_post_thumbnail( get_the_ID(), 'pihg-seed-thumb' );
+				$all_seeds .= '<a href="' . get_permalink() . '">' .
+						get_the_post_thumbnail( get_the_ID(), 'pihg-seed-thumb' ) .
+						'</a>' . PHP_EOL;
 			}
 			$all_seeds .= get_the_excerpt();
 			$all_seeds .= "</div><!-- end .entry -->\n";
@@ -199,38 +201,28 @@ class PIHG {
 		);
 		$contracts = new WP_Query( $args );
 		if ( $contracts->have_posts() ) {
-		$i = 0;
-		while ( $contracts->have_posts() ) {
-			$contracts->the_post();
-			$greek = '';
-			if ( $i % 3 == 0 ) {
-				if( $i > 0 ) {
-					$all_contracts .= "</div>\t<!-- .row -->\n";
-					$all_contracts .= "<div class='row'>\n";
+			while ( $contracts->have_posts() ) {
+				$contracts->the_post();
+				
+				$all_contracts .= "<div class='entry'>\n";
+				$all_contracts .= "<h2 id='post-" .	get_the_ID() .
+						"'><a href='" . get_permalink() . "'>" . get_the_title() . "</a></h2>\n";
+				$all_contracts .= '<div class="five columns alpha">' . PHP_EOL;
+				if( has_post_thumbnail() ) {
+					$all_contracts .= '<a href="' . get_permalink() . '">' .
+							get_the_post_thumbnail( get_the_ID(), 'pihg-contract-thumb' ) .
+							'</a>' . PHP_EOL;
 				}
-				$greek = ' alpha';
-			}
-			if( $i % 3 == 2 ) {
-				$greek = ' omega';
-			}
-			$all_contracts .= "<div class='four columns $greek contract-type'>\n";
-			$all_contracts .= "<div class='entry'>\n";
-			$all_contracts .= "<h2 id='post-" .	get_the_ID() .
-					"'><a href='" . get_permalink() . "'>" . get_the_title() . "</a></h2>\n";
+				$all_contracts .= '</div>	<!-- .five columns alpha -->' . PHP_EOL;
+				$all_contracts .= '<div class="seven columns omega">' . get_the_excerpt() .
+						'</div>	<!-- .seven columns omega -->' . PHP_EOL;
+				$all_contracts .= "</div><!-- end .entry -->\n";
+			}	// while have_posts()
+			$all_contracts .= "</div>\t<!-- .row -->\n";
+			wp_reset_postdata();
+		} // if have_posts()
 
-			if( has_post_thumbnail() ) {
-				$all_contracts .= get_the_post_thumbnail( get_the_ID(), 'pihg-contract-thumb' );
-			}
-			$all_contracts .= get_the_excerpt();
-			$all_contracts .= "</div><!-- end .entry -->\n";
-			$all_contracts .= '</div> <!-- .four columns contract-type -->' . PHP_EOL;
-			$i++;
-		}	// while have_posts()
-		$all_contracts .= "</div>\t<!-- .row -->\n";
-		wp_reset_postdata();
-	} // if have_posts()
-
-	return $all_contracts;
+		return $all_contracts;
 	}
 
 	function settings_panels() {
