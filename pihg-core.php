@@ -33,7 +33,7 @@ class PIHG {
 
 		// admin side
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_scripts' ) );
-		add_action( 'admin_menu', array( $this, 'settings_panels' ) );
+		// add_action( 'admin_menu', array( $this, 'settings_panels' ) );
 
 		// debugging
 		// add_action( 'shutdown', array( $this, 'debooger' ) );
