@@ -29,6 +29,7 @@ class PIHG {
 		//add_action( 'widgets_init', function(){ register_widget( 'PIHG_News_Widget' ); });
 
 		add_shortcode( 'all-pihg-seeds', array( $this, 'all_seeds' ) );
+		add_shortcode( 'all-pihg-contracts', array( $this, 'all_seeds' ) );
 
 		// admin side
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_scripts' ) );
