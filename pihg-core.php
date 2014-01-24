@@ -194,7 +194,6 @@ class PIHG {
 	 * @return string
 	 */
 	function all_contracts() {
-		$all_contracts = "<div class='row'>\n";
 		$args = array(
 			'post_type' => 'pihg-contract',
 			'posts_per_page' => -1,
@@ -204,6 +203,7 @@ class PIHG {
 			while ( $contracts->have_posts() ) {
 				$contracts->the_post();
 
+				$all_contracts = "<div class='row'>\n";
 				$all_contracts .= "<h2 id='post-" .	get_the_ID() .
 						"'><a href='" . get_permalink() . "'>" . get_the_title() . "</a></h2>\n";
 				$all_contracts .= '<div class="five columns alpha">' . PHP_EOL;
@@ -215,8 +215,8 @@ class PIHG {
 				$all_contracts .= '</div>	<!-- .five columns alpha -->' . PHP_EOL;
 				$all_contracts .= '<div class="seven columns omega">' . get_the_excerpt() .
 						'</div>	<!-- .seven columns omega -->' . PHP_EOL;
+				$all_contracts .= "</div>\t<!-- .row -->\n";
 			}	// while have_posts()
-			$all_contracts .= "</div>\t<!-- .row -->\n";
 			wp_reset_postdata();
 		} // if have_posts()
 
