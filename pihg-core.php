@@ -148,10 +148,10 @@ class PIHG {
 	function all_seeds() {
 		$all_seeds = "<div class='row'>\n";
 		$args = array(
-			'post_type' => 'pihg-seed',
-			'posts_per_page' => -1,
-			'orderby' => 'post_title',
-			'order' => 'ASC',
+			'post_type'		=> 'pihg-seed',
+			'posts_per_page'=> -1,
+			'orderby'		=> 'title',
+			'order'			=> 'ASC',
 		);
 		$seeds = new WP_Query( $args );
 		if ( $seeds->have_posts() ) {
