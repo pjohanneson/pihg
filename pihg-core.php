@@ -198,13 +198,13 @@ class PIHG {
 			'post_type' => 'pihg-contract',
 			'posts_per_page' => -1,
 		);
+		$all_contracts = '';
 		$contracts = new WP_Query( $args );
-		_dump( $contracts );
 		if ( $contracts->have_posts() ) {
 			while ( $contracts->have_posts() ) {
 				$contracts->the_post();
 
-				$all_contracts = "<div class='row'>\n";
+				$all_contracts .= "<div class='row'>\n";
 				$all_contracts .= "<h2 id='post-" .	get_the_ID() .
 						"'><a href='" . get_permalink() . "'>" . get_the_title() . "</a></h2>\n";
 				$all_contracts .= '<div class="five columns alpha">' . PHP_EOL;
