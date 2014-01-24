@@ -26,7 +26,7 @@ class PIHG {
 		add_action( 'pihg_seed_info', array( $this, 'seed_info' ) );
 
 		// load the widgets
-		add_action( 'widgets_init', function(){ register_widget( 'PIHG_News_Widget' ); });
+		//add_action( 'widgets_init', function(){ register_widget( 'PIHG_News_Widget' ); });
 
 		add_shortcode( 'all-pihg-seeds', array( $this, 'all_seeds' ) );
 
@@ -140,7 +140,7 @@ class PIHG {
 		echo( $table );
 	}
 
-	/**
+		/**
 	 * Shortcode for the seed list page.
 	 * @return string
 	 */
@@ -184,6 +184,52 @@ class PIHG {
 	} // if have_posts()
 
 	return $all_seeds;
+	}
+
+	/**
+	 * Shortcode for the contract list page.
+	 * @return string
+	 */
+	function all_contracts() {
+		$all_contracts = "<div class='row'>\n";
+		$args = array(
+			'post_type' => 'pihg-contract',
+			'posts_per_page' => -1,
+		);
+		$contracts = new WP_Query( $args );
+		if ( $contracts->have_posts() ) {
+		$i = 0;
+		while ( $contracts->have_posts() ) {
+			$contracts->the_post();
+			$greek = '';
+			if ( $i % 3 == 0 ) {
+				if( $i > 0 ) {
+					$all_contracts .= "</div>\t<!-- .row -->\n";
+					$all_contracts .= "<div class='row'>\n";
+				}
+				$greek = ' alpha';
+			}
+			if( $i % 3 == 2 ) {
+				$greek = ' omega';
+			}
+			$all_contracts .= "<div class='four columns $greek contract-type'>\n";
+			$all_contracts .= "<div class='entry'>\n";
+			$all_contracts .= "<h2 id='post-" .	get_the_ID() .
+					"'><a href='" . get_permalink() . "'>" . get_the_title() . "</a></h2>\n";
+
+			if( has_post_thumbnail() ) {
+				$all_contracts .= get_the_post_thumbnail( get_the_ID(), 'pihg-contract-thumb' );
+			}
+			$all_contracts .= get_the_excerpt();
+			$all_contracts .= "</div><!-- end .entry -->\n";
+			$all_contracts .= '</div> <!-- .four columns contract-type -->' . PHP_EOL;
+			$i++;
+		}	// while have_posts()
+		$all_contracts .= "</div>\t<!-- .row -->\n";
+		wp_reset_postdata();
+	} // if have_posts()
+
+	return $all_contracts;
 	}
 
 	function settings_panels() {
